@@ -1,0 +1,436 @@
+body {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+    background-color: black;
+    background: linear-gradient(132deg, #000000,#090909, #131313, #1A1A1A, #202020);
+    animation: BackgroundGradient 15s ease infinite;
+}
+
+header {
+	margin-top: 0.5em;
+    padding: 1em;
+    text-align: center;
+    width: 92%;
+	margin-left: 1.7em;
+    background-color: #191919;
+    color: #fff;
+    position: relative;
+    z-index: 10; /* S'assure que le header reste au-dessus */
+	color: #fff;
+    text-shadow:
+        0 0 3.5px #00ff99,  /* Vert */
+        0 0 5px #00ff99, /* Vert */
+        0 0 10.5px #00ff99, /* Vert */
+        0 0 21px #0077ff, /* Bleu */
+        0 0 41px #0077ff, /* Bleu */
+        0 0 46px #0077ff, /* Bleu */
+        0 0 51px #0077ff, /* Bleu */
+        0 0 75.5px #0077ff; /* Bleu sombre */
+	animation: pulsate 2.5s infinite alternate;
+}
+
+.neon-border {
+  padding: 20px;
+  text-align: center;
+  font-size: 24px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 15px #fbbbbb, 0 0 20px #fbbbbb, 0 0 30px #fbbbbb, 0 0 45px #fbbbbb;
+}
+
+.neon-border-blue {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2.5px #2dd9fe, 0 0 5px #2dd9fe, 0 0 10px #2dd9fe, 0 0 20px #2dd9fe;
+}
+
+.neon-border-red {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2.5px #FF53cd, 0 0 5px #FF53cd, 0 0 10px #FF53cd, 0 0 20px #FF53cd;
+}
+
+.neon-border-green {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2.5px #00fe9b, 0 0 5px #00fe9b, 0 0 10px #00fe9b, 0 0 20px #00fe9b;
+}
+
+.neon-border-yellow {
+  padding: 20px;
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2.5px #ffdb4e, 0 0 5px #ffdb4e, 0 0 10px #ffdb4e, 0 0 20px #ffdb4e;
+}
+
+#start, #quitter {
+    font-size: 1.5em;
+    padding: 0.5em 2em;
+    border: none;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+#start {
+    position: absolute;
+    top: 55%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: black;
+    color: white;
+    width: 10em;
+    height: 6em;
+	margin-top: 2em;
+	
+	background: linear-gradient(132deg, #000000,#090909, #131313, #1A1A1A, #202020);
+    animation: BackgroundGradient 15s ease infinite;
+}
+
+#start:hover {
+    background-color: #333; /* Nuance plus claire au survol */
+	border-radius: 15px;
+	border: 1px solid transparent;
+	box-shadow: 0 0 2.5px #fbbbbb, 0 0 5px #fbbbbb, 0 0 10px #fbbbbb, 0 0 20px #fbbbbb;
+}
+
+#quitter {
+    position: absolute;
+    bottom: 2em;
+    right: 2em;
+    width: 8em;
+    height: 3em;
+    background-color: #f44336;
+    color: white;
+    display: none;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+    text-align: center;
+    border: none;
+    font-family: "Press Start 2P", system-ui;
+    font-size: 0.8em;
+}
+
+#quitter:hover {
+    background-color: #d32f2f; /* Rouge légèrement plus foncé au survol */
+}
+
+#rouge, #bleu, #vert, #jaune {
+    position: absolute;
+    width: 9em;
+    height: 5em;
+    border: none;
+    border-radius: 0.8em;
+    font-size: 1.5em;
+    transition: transform 1.5s ease-in-out, background-color 0.5s ease; /* Effets de transition fluides */
+}
+
+/* Positions initiales des boutons */
+#rouge {
+    background-color: #e10361;
+    top: 10em;
+    left: 2em;
+    margin-top: 0;
+}
+#bleu {
+    background-color: #00a3d5;
+    top: 10em;
+    right: 2em;
+    margin-top: 0;
+}
+#vert {
+    background-color: #02c435;
+    bottom: 2em;
+    left: 2em;
+}
+#jaune {
+    background-color: #b48505;
+    bottom: 2em;
+    right: 2em;
+}
+
+/* Couleurs claires lorsqu'activé */
+#rouge.active {
+    background-color: #FF53cd;
+}
+#bleu.active {
+    background-color: #2dd9fe;
+}
+#vert.active {
+    background-color: #00fe9b;
+}
+#jaune.active {
+    background-color: #ffdb4e;
+}
+
+#status {
+    font-size: 2em;
+    color: #bbfbc9;
+    margin-bottom: 20px;
+	margin-top: 0.25em;
+    text-align: center;
+}
+
+
+.neon-border-white {
+  border-radius: 15px;
+  border: 1px solid transparent;
+  box-shadow: 0 0 2.5px white, 0 0 5px white, 0 0 10px white, 0 0 20px white;
+}
+
+#niveau {
+    position: fixed;
+    bottom: 1em;
+    left: 35%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: #333;
+    background-color: white;
+    padding: 10px;
+}
+
+#score {
+    position: fixed;
+    bottom: 1em;
+    left: 65%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: #333;
+    background-color: #f0f0f0;
+    padding: 10px;
+	
+}
+
+#timer {
+    position: fixed;
+    bottom: 1em;
+    left: 50%;
+    transform: translateX(-50%);
+    font-size: 2em;
+    color: #333;
+    background-color: white;
+    padding: 10px;
+	
+}
+
+#timer.flash {
+    animation: flashTimer 1s ease-in-out;
+}
+
+@keyframes flashTimer {
+    0%, 100% {
+        background-color: transparent; /* Retourne à normal */
+        color: inherit; /* Couleur normale */
+    }
+    50% {
+        background-color: yellow; /* Couleur de surbrillance */
+        color: red; /* Couleur de texte temporaire */
+    }
+}
+
+
+@media screen and (max-width: 768px) {
+    #start, #rouge, #bleu, #vert, #jaune {
+        width: 8em;
+        height: 5em;
+        font-size: 1.2em;
+    }
+
+    #score {
+        font-size: 1.5em;
+    }
+
+    #status {
+        font-size: 1.5em;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #start, #rouge, #bleu, #vert, #jaune {
+        width: 6em;
+        height: 4em;
+        font-size: 1em;
+    }
+
+    #score {
+        font-size: 1.2em;
+    }
+
+    #status {
+        font-size: 1.2em;
+    }
+}
+
+form {
+    background-color: #1c1c1c; /* Fond sombre */
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(255, 255, 255, 0.3);
+    width: 50%;
+    max-width: 500px;
+	text-align: center;
+    border: 2px solid #ff5555;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+form label {
+    display: block;
+    font-size: 1.4em;
+    color: #ff5555;
+    margin-bottom: 8px;
+    font-weight: bold;
+}
+
+form input {
+    width: 100%;
+    max-width: 350px;
+    padding: 12px;
+    margin-bottom: 15px;
+    border: 2px solid #ff5555;
+    border-radius: 8px;
+    background-color: #222;
+    color: white;
+    font-size: 1.2em;
+    outline: none;
+    transition: border-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+    display: block;
+    margin: auto;
+}
+
+form input:focus {
+    border-color: #ff8888;
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.5);
+}
+
+form button {
+    background-color: #ff4444;
+    color: white;
+    font-size: 1.4em;
+    font-weight: bold;
+    padding: 12px 20px;
+    border: 2px solid #ff5555;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background 0.3s ease-in-out, transform 0.2s ease;
+    width: 80%;
+    max-width: 250px;
+    display: block;
+    margin: 10px auto;
+}
+
+form button:hover {
+    background-color: #ff2222;
+    transform: scale(1.05);
+    box-shadow: 0px 0px 10px rgba(255, 0, 0, 0.6);
+}
+
+@media screen and (max-width: 768px) {
+    form {
+        width: 90%;
+        max-width: 350px;
+    }
+
+    form label {
+        font-size: 1.2em;
+    }
+
+    form input {
+        font-size: 1.1em;
+        max-width: 280px;
+    }
+
+    form button {
+        font-size: 1.1em;
+        max-width: 200px;
+    }
+}
+
+
+.press-start-2p-regular {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 14px;
+  line-height: 1.5;
+}
+
+.press-start-2p-small {
+  font-family: "Press Start 2P", system-ui;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 10px;
+  line-height: 1.3;
+}
+
+header, 
+#status, 
+#niveau, 
+#score, 
+#timer, 
+#start, 
+#quitter {
+  font-family: "Press Start 2P", system-ui;
+}
+
+header {
+  font-size: 1.2em !important;
+}
+
+#status {
+  font-size: 1.5em !important;
+}
+
+#niveau, #score, #timer {
+  font-size: 1em !important;
+}
+
+#start, #quitter {
+  font-size: 1em !important;
+}
+
+form label {
+  font-size: 1em !important;
+}
+
+
+
+@keyframes pulsate {
+  100% {
+    text-shadow:
+      0 0 2px #fff,
+      0 0 4px #fff,
+      0 0 6px #fff,
+      0 0 10px #0fa,
+      0 0 45px #0fa,
+      0 0 55px #0fa,
+      0 0 70px #0fa,
+      0 0 80px #0fa;
+  }
+}
+
+@keyframes BackgroundGradient {
+  0% {background-position: 0% 50%;}
+  50% {background-position: 100% 50%;}
+  100% {background-position: 0% 50%;}
+}
+
+@supports (background: color(display-p3 1 1 1)) {
+  @media (dynamic-range: high) {
+	  .neon-border-red {
+	  box-shadow: color(display-p3 1 0 1); }
+	  
